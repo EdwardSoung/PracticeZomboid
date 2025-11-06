@@ -11,6 +11,7 @@
 3. 무기 또는 소모형 아이템을 사용 가능
 
 #### 조작법
+**Enhanced Input System을 사용하여 조작**
 >이동 : WSAD로 이동
 
 ![방향키 입력_확대](https://github.com/user-attachments/assets/cd306c57-3e58-4dd8-84ba-564df78f0f5b)
@@ -20,6 +21,7 @@
 ![마우스 입력_확대](https://github.com/user-attachments/assets/4d6b49f3-859b-4854-b60a-f925bcfa67e5)
 
 >공격 : 마우스 왼쪽 클릭 시
+
 1. 맨손 공격
 
     ![캐릭터 공격(맨손)](https://github.com/user-attachments/assets/c9eaa8fe-d606-4c0a-afa7-3e84e4adc0c4)
@@ -31,6 +33,9 @@
 3. 총기 공격
 
     ![캐릭터 공격(권총)](https://github.com/user-attachments/assets/26fec3cf-c04a-4752-b1ce-4d1281af4f4c)
+<br>
+>무기 상태값에 따른 애니메이션 몽타주 세팅으로 조절<br>
+<img width="945" height="459" alt="image" src="https://github.com/user-attachments/assets/7af0936e-445a-423e-917c-07c94d8384f4" />
 
 
 #### 상호작용
@@ -43,4 +48,11 @@
 
  -> 텍스처 상하좌우 이동하여 마스킹
 (Set Render Custom Depth로 활성화)
+
+
+#### AI Perception
+>듣기와 시야 센싱으로 타겟팅<br>
+>근접 거리의 경우 거리로 타겟 추가 체크<br>
+>Behavior Tree에서 타겟 체크 서비스 등록하여 타겟 검색(Get Known Perceived Actors)<br>
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/0313a221-d321-406e-91a5-182c53774f66" />
 
