@@ -56,3 +56,15 @@
 >Behavior Tree에서 타겟 체크 서비스 등록하여 타겟 검색(Get Known Perceived Actors)<br>
 <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/0313a221-d321-406e-91a5-182c53774f66" />
 
+
+#### 건물 진입 시 처리
+- 최초 시도 : 카메라에서 Line Trace로 충돌 물체 안보이게 처리<br>
+  -> 없애줄 범위와 없애지 말아야 하는 물체들의 구분이 어려워 시간이 걸릴 듯 하여 수정
+- 구현 : 캐릭터가 충돌 범위 내부에 진입 시 숨겨줄 물체를 직접 등록
+<img width="1590" height="703" alt="image" src="https://github.com/user-attachments/assets/c47c69fe-983c-4e06-956b-fc3e314d9173" />
+
+
+#### 아이템 데이터 처리
+- Data Asset을 사용하여 아이템의 데이터 구조체들을 미리 등록하여 사용
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/49889454-4b3d-4724-9be6-2ba4a8c9ab8d" />
+
