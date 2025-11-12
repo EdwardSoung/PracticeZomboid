@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "SelectableObject.h"
+#include "Objects/SelectableObject.h"
 
 // Sets default values
 ASelectableObject::ASelectableObject()
