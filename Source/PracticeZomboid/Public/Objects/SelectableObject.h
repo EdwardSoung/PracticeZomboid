@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include <Data/Enums.h>
 #include "SelectableObject.generated.h"
 
 UCLASS()
@@ -22,5 +23,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generate")
+	TArray<EItemGroup> AvailableTypes;
 
 };
