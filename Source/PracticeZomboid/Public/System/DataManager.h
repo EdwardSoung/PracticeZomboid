@@ -20,6 +20,7 @@ public:
 	UDataManager();
 
 	TArray<FItemDataStruct> GetItemDataByGroup(EItemGroup InGroupType);
+	FItemDataStruct GetItemByDataId(int32 InDataId);
 
 	
 protected:

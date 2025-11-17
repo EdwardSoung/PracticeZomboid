@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include <Data/Enums.h>
+#include "Data/Enums.h"
+#include "Data/ItemDataStruct.h"
 #include "SelectableObject.generated.h"
 
 UCLASS()
@@ -20,6 +21,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void GenerateItems();
+	void SetAvailableItemIds();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -28,4 +32,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generate")
 	TArray<EItemGroup> AvailableTypes;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Items");
+	TArray<int32> AvailableItemIds;
 };

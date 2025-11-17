@@ -25,3 +25,21 @@ TArray<FItemDataStruct> UDataManager::GetItemDataByGroup(EItemGroup InGroupType)
 
 	return OutData;
 }
+
+FItemDataStruct UDataManager::GetItemByDataId(int32 InDataId)
+{
+	if (!ItemDataAsset)
+		return FItemDataStruct();
+
+	FItemDataStruct OutData;
+
+	for (FItemDataStruct data : ItemDataAsset.Get()->Data)
+	{
+		if (data.DataId == InDataId)
+		{
+			return OutData;			
+		}
+	}
+
+	return FItemDataStruct();
+}

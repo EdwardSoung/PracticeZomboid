@@ -16,6 +16,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int64 UID = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 DataId = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FStatStruct Stat;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 Amount;
