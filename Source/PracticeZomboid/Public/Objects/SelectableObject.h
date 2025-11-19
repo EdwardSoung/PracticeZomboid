@@ -28,10 +28,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void TrySelect(bool bIsSelected, AActor* Player);
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generate")
 	TArray<EItemGroup> AvailableTypes;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Items");
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Items")
 	TArray<int32> AvailableItemIds;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Items")
+	TArray<FItemDataStruct> GeneratedItems;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<UStaticMeshComponent> StaticMesh;
 };
