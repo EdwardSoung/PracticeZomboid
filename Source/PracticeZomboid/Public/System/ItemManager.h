@@ -16,11 +16,16 @@ class PRACTICEZOMBOID_API UItemManager : public UGameInstanceSubsystem
 	GENERATED_BODY()
 	
 public:
+	
 	FItemDataStruct GenerateItem(int32 InDataId);
-
 private:
 	int64 GetNextUid();
 
 private:
 	int64 NextUid = 0;
+
+public:
+
+
+
 };
