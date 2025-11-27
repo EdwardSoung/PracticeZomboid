@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "Data/ItemDataStruct.h"
+#include "Data/ItemTableData.h"
 #include "ItemManager.generated.h"
 
 /**
@@ -17,7 +17,7 @@ class PRACTICEZOMBOID_API UItemManager : public UGameInstanceSubsystem
 	
 public:
 	
-	FItemDataStruct GenerateItem(int32 InDataId);
+	FItemTableData GenerateItem(int32 InDataId);
 private:
 	int64 GetNextUid();
 
@@ -26,6 +26,6 @@ private:
 
 public:
 
-
+	void MoveItemToInventory(FItemTableData InItem);
 
 };

@@ -17,12 +17,16 @@ ASelectableObject::ASelectableObject()
 	SetRootComponent(StaticMesh);
 }
 
+bool ASelectableObject::CanSelect(AActor* Player)
+{
+	float distance = GetDistanceTo(Player);
+
+	return distance < SelectableDistance;
+}
 // Called when the game starts or when spawned
 void ASelectableObject::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	GenerateItems();
 }
 
 void ASelectableObject::GenerateItems()
@@ -42,7 +46,7 @@ void ASelectableObject::GenerateItems()
 		if (rnd <= genRate)
 		{
 			auto GenItem = ItemManager->GenerateItem(itemId);
-			FItemDataStruct* Found = Algo::FindByPredicate(GeneratedItems, [itemId](const FItemDataStruct& Elem)
+			FItemTableData* Found = Algo::FindByPredicate(GeneratedItems, [itemId](const FItemTableData& Elem)
 				{
 					return Elem.DataId == itemId;
 				});
@@ -65,7 +69,7 @@ void ASelectableObject::SetAvailableItemIds()
 	for (EItemGroup type : AvailableTypes)
 	{
 		auto Items = DataManager->GetItemDataByGroup(type);
-		for (FItemDataStruct item : Items)
+		for (FItemTableData item : Items)
 		{
 			AvailableItemIds.Add(item.DataId);
 		}
@@ -79,11 +83,17 @@ void ASelectableObject::Tick(float DeltaTime)
 
 }
 
-void ASelectableObject::TrySelect(bool bIsSelected, AActor* Player)
+void ASelectableObject::TrySelectable(bool bIsSelected, AActor* Player)
 {
-	float distance = GetDistanceTo(Player);
-
-	bool isRender = bIsSelected && distance < 200;
+	bool isRender = bIsSelected && CanSelect(Player);
 	StaticMesh->SetRenderCustomDepth(isRender);
+}
+
+void ASelectableObject::TrySelect(AActor* Player)
+{
+	if (CanSelect(Player))
+	{
+		//UI 생성
+	}
 }
 

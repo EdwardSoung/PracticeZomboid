@@ -3,3 +3,11 @@
 
 #include "System/GameManager.h"
 
+bool UGameManager::GetIsRestart()
+{
+	bool curValue = IsRestart;
+
+	IsRestart = true;
+
+	return curValue;
+}

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Data/Enums.h"
-#include "Data/ItemDataStruct.h"
+#include "Data/ItemTableData.h"
 #include "SelectableObject.generated.h"
 
 UCLASS()
@@ -17,18 +17,26 @@ public:
 	// Sets default values for this actor's properties
 	ASelectableObject();
 
+	bool CanSelect(AActor* Player);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void GenerateItems();
 	void SetAvailableItemIds();
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void TrySelect(bool bIsSelected, AActor* Player);
+	void TrySelectable(bool bIsSelected, AActor* Player);
+	void TrySelect(AActor* Player);
+
+	void SetAvailableType(TArray<EItemGroup> InType)
+	{
+		AvailableTypes = InType;
+	}
+	void GenerateItems();
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generate")
@@ -38,8 +46,11 @@ protected:
 	TArray<int32> AvailableItemIds;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Items")
-	TArray<FItemDataStruct> GeneratedItems;
+	TArray<FItemTableData> GeneratedItems;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	TObjectPtr<UStaticMeshComponent> StaticMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
+	float SelectableDistance = 200.0f;
 };

@@ -4,10 +4,6 @@
 #include "System/DataManager.h"
 #include "System/GameManager.h"
 
-UDataManager::UDataManager()
-{
-	ItemDataAsset = Cast<UDataAssets>(StaticLoadObject(UDataAssets::StaticClass(), nullptr, TEXT("/Game/Data/ItemAsset")));
-}
 void UDataManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
@@ -27,43 +23,37 @@ void UDataManager::Initialize(FSubsystemCollectionBase& Collection)
 
 		for (FItemTableData* row : Rows)
 		{
-			ItemMap.Add(row->DataId, row);
+			ItemMap.Add(row->DataId, *row);
 		}
 	}
 }
 
-TArray<FItemDataStruct> UDataManager::GetItemDataByGroup(EItemGroup InGroupType)
+TArray<FItemTableData> UDataManager::GetItemDataByGroup(EItemGroup InGroupType)
 {
-	if (!ItemDataAsset)
-		return TArray<FItemDataStruct>();
 
-	TArray<FItemDataStruct> OutData;
+	if (ItemMap.IsEmpty())
+		return TArray<FItemTableData>();
 
-	for (FItemDataStruct data : ItemDataAsset.Get()->Data)
+	TArray<FItemTableData> OutData;
+
+	for (auto data : ItemMap)
 	{
-		if (data.ItemGroup == InGroupType)
+		if (data.Value.ItemGroup == InGroupType)
 		{
-			OutData.Add(data);
+			OutData.Add(data.Value);
 		}
 	}
 
 	return OutData;
 }
 
-FItemDataStruct UDataManager::GetItemByDataId(int32 InDataId)
+FItemTableData UDataManager::GetItemByDataId(int32 InDataId)
 {
-	if (!ItemDataAsset)
-		return FItemDataStruct();
-
-	FItemDataStruct OutData;
-
-	for (FItemDataStruct data : ItemDataAsset.Get()->Data)
+	if (ItemMap.IsEmpty())
 	{
-		if (data.DataId == InDataId)
-		{
-			return OutData;			
-		}
+		return FItemTableData();
 	}
 
-	return FItemDataStruct();
+	auto findItem = *ItemMap.Find(InDataId);
+	return findItem;
 }

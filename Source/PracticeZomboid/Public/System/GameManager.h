@@ -13,7 +13,13 @@ UCLASS()
 class PRACTICEZOMBOID_API UGameManager : public UGameInstance
 {
 	GENERATED_BODY()
+
+public:
+	bool GetIsRestart();
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Table")
 	TObjectPtr<UDataTable> ItemDataTable;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Flags")
+	bool IsRestart = false;
 };
