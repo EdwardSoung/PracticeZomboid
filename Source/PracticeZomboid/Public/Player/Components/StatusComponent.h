@@ -4,17 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "InventoryComponent.generated.h"
+#include "Data/StatStruct.h"
+#include "StatusComponent.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class PRACTICEZOMBOID_API UInventoryComponent : public UActorComponent
+class PRACTICEZOMBOID_API UStatusComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UInventoryComponent();
+	UStatusComponent();
 
 protected:
 	// Called when the game starts
@@ -24,5 +25,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data")
+	FStatStruct StatData;
 };

@@ -27,7 +27,7 @@ protected:
 	TObjectPtr<class UCameraComponent> TopdownCamera;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	TObjectPtr<class USphereComponent> PunchCollider;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
 	TObjectPtr<UStaticMeshComponent> WeaponMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	TObjectPtr<UStaticMeshComponent> GunMesh;
@@ -37,9 +37,10 @@ protected:
 	//TObjectPtr<class UNiagaraComponent> GunMuzzle;
 
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Player|Components")
 	TObjectPtr<class UInventoryComponent> Inventory;
-	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Player|Components")
+	TObjectPtr<class UStatusComponent> Status;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

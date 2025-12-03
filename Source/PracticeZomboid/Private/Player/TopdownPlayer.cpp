@@ -7,7 +7,8 @@
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
 //#include "NiagaraComponent.h"
-#include "Player/InventoryComponent.h"
+#include "Player/Components/InventoryComponent.h"
+#include "Player/Components/StatusComponent.h"
 
 // Sets default values
 ATopdownPlayer::ATopdownPlayer()
@@ -28,15 +29,16 @@ ATopdownPlayer::ATopdownPlayer()
 
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon"));
 	WeaponMesh->SetupAttachment(CurrentMesh);
-	GunMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon"));
-	GunMesh->AttachToComponent(CurrentMesh, FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("Weapon"));
 
+	GunMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Gun"));
+	GunMesh->SetupAttachment(CurrentMesh);
 	GunFirePlace = CreateDefaultSubobject<USceneComponent>(TEXT("FirePlace"));	
 	GunFirePlace->SetupAttachment(GunMesh);
 
 	//GunMuzzle = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Muzzle Flash"));
 	//GunMuzzle->Setup
 	Inventory = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory"));
+	Status = CreateDefaultSubobject<UStatusComponent>(TEXT("Status"));
 }
 
 // Called when the game starts or when spawned
@@ -44,6 +46,8 @@ void ATopdownPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	GunMesh->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("Weapon"));
+	PunchCollider->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("Weapon"));
 }
 
 // Called every frame
